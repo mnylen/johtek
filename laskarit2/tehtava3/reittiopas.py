@@ -25,12 +25,6 @@ class Node(object):
                 nodes.add(Node(self, next_stop, time_at_next_stop, line))
         
         return nodes
-            
-    def __eq__(self, other):
-        return self.stop == other.stop and self.time == other.time
-    
-    def __hash__(self):
-        return hash(self.stop) * 37 + hash(self.time) * 37
 
 class Stop(object):
     def __init__(self, number, y_coord, x_coord, name):
@@ -72,12 +66,6 @@ class Transportation(object):
         stop.add_transportation(self)
     
     def calculate_travel_time(self, from_stop, to_stop):
-        """
-        Calculates the time in minutes it takes for this transportation
-        to travel from the given stop to the given stop.
-        
-        """
-        
         from_entry = None
         to_entry   = None
         
@@ -93,13 +81,7 @@ class Transportation(object):
         else:
             return None
     
-    def calculate_waiting_time(self, current_time, stop):
-        """
-        Calculates the minutes we need to wait at the stop for
-        this transportation to arrive there.
-        
-        """
-        
+    def calculate_waiting_time(self, current_time, stop):        
         travel_time    = self.calculate_travel_time(self.first_stop(), stop)
         
         last_departure = current_time - travel_time
