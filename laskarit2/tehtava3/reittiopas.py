@@ -50,13 +50,6 @@ class Transportation(object):
     def __init__(self, name):
         self.name       = name
         self.time_table = []
-            
-    def get_time_spent_on_arrival_at(self, stop):
-        for entry in self.time_table:
-            if entry[0] == stop:
-                return entry[1]
-        
-        return None
         
     def first_stop(self):
         return self.time_table[0][0]
@@ -81,7 +74,7 @@ class Transportation(object):
         else:
             return None
     
-    def calculate_waiting_time(self, current_time, stop):        
+    def calculate_waiting_time(self, current_time, stop):
         travel_time    = self.calculate_travel_time(self.first_stop(), stop)
         
         last_departure = current_time - travel_time
