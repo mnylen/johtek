@@ -8,8 +8,6 @@ class Node(object):
         self.line   = line
         
     def adjacent_nodes(self):
-        nodes = set()
-        
         for line in self.stop.transportations:
             next_stop = line.next_stop(self.stop)
             
@@ -22,9 +20,7 @@ class Node(object):
                 travel_time       = line.calculate_travel_time(self.stop, next_stop)
                 time_at_next_stop = self.time + waiting_time + travel_time
                 
-                nodes.add(Node(self, next_stop, time_at_next_stop, line))
-        
-        return nodes
+                yield Node(self, next_stop, time_at_next_stop, line)
 
 class Stop(object):
     def __init__(self, number, y_coord, x_coord, name):
