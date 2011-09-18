@@ -9,9 +9,7 @@ class Node(object):
         
     def adjacent_nodes(self):
         for line in self.stop.transportations:
-            next_stop = line.next_stop(self.stop)
-            
-            if next_stop != None:
+            for next_stop in line.next_stops(self.stop):
                 if self.line and line == self.line:
                     waiting_time = 0
                 else:
@@ -83,13 +81,10 @@ class Transportation(object):
         return arrives_here - current_time
         
         
-    def next_stop(self, current_stop):
+    def next_stops(self, current_stop):
         for i in range(1, len(self.time_table)):
             if self.time_table[i-1][0] == current_stop:
-                return self.time_table[i][0]
-        
-        return None
-
+                yield self.time_table[i][0]
 
 from Queue import PriorityQueue
 
