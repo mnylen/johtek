@@ -360,10 +360,18 @@ if __name__ == "__main__":
     if path:
         print "Total time: %d minutes" % path[-1].time
         
+        previous = None
         for node in path:
-            if node.line:
-                print node.line.name
-            
-            print "%d min: %s" % (node.time, node.stop.name)
+            if previous and node.line == previous.line:
+                print "\t%s -- %d min" % (node.stop.name, node.time)
+            else:
+                if node.line is not None:
+                    print "Change to %s" % (node.line.name)
+                    previous = node
+                
+                    print "\t%s -- %d min" % (node.stop.name, node.time)
+                
+                else:
+                    print "At %s" % (node.stop.name)
     else:
         print "No path found :("
