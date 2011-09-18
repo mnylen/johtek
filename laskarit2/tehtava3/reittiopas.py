@@ -10,7 +10,7 @@ class Node(object):
     def adjacent_nodes(self):
         for line in self.stop.transportations:
             for next_stop in line.next_stops(self.stop):
-                if self.line and line == self.line:
+                if not self.line or self.line and line == self.line:
                     waiting_time = 0
                 else:
                     waiting_time = line.calculate_waiting_time(self.time, self.stop)
