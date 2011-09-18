@@ -1,4 +1,4 @@
-MAXIMUM_SPEED = 50
+MAXIMUM_SPEED = 1000
 
 class Node(object):
     def __init__(self, parent, stop, time, line = None):
