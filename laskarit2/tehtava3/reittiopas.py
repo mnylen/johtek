@@ -100,36 +100,17 @@ class Transportation(object):
         
         """
         
-        travel_time  = self.calculate_travel_time(self.first_stop(), stop)
-        waiting_time = 0
+        travel_time    = self.calculate_travel_time(self.first_stop(), stop)
         
-        # a) Look backward from current_time to see if there's
-        #    a departure that arrives at the stop after current_time.
+        last_departure = current_time - travel_time
+        last_departure += 10 - (last_departure % 10)
+        arrives_here   = last_departure + travel_time
         
-        remainder      = (current_time % 10)
-        departure_time = current_time - remainder
-        
-        while departure_time + travel_time >= current_time:
-            departure_time -= 10
-        
-        if departure_time + travel_time <= current_time:
-            # we just missed that departure
-            departure_time += 10
-        
-        waiting_time = (departure_time + travel_time) - current_time
-        
-        
-        # b) Look forward from current_time to find a departure
-        #    that arrives at the stop after current_time
-        
-        departure_time = current_time - remainder + 10
-        while departure_time + travel_time < current_time:
-            departure_time += 10
+        if arrives_here < current_time:
+            arrives_here += 10
                 
-        # Pick the departure that results in the lowest waiting time
-        waiting_time = min(waiting_time, (departure_time + travel_time) - current_time)
+        return arrives_here - current_time
         
-        return waiting_time
         
     def next_stop(self, current_stop):
         for i in range(1, len(self.time_table)):
