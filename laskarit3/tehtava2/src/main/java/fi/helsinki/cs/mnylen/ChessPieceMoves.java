@@ -6,44 +6,44 @@ import static fi.helsinki.cs.mnylen.Helpers.*;
 
 public abstract class ChessPieceMoves {
     protected final static ChessPieceMoveSet[] WHITE_PAWN_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] WHITE_PAWN_TOTAL_MOVES = new byte[36];
-
     protected final static ChessPieceMoveSet[] BLACK_PAWN_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] BLACK_PAWN_TOTAL_MOVES = new byte[36];
-
     protected final static ChessPieceMoveSet[] KNIGHT_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] KNIGHT_TOTAL_MOVES = new byte[36];
-
     protected final static ChessPieceMoveSet[] KING_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] KING_TOTAL_MOVES = new byte[36];
-
-    protected final static ChessPieceMoveSet[] ROOK_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] ROOK_TOTAL_MOVES = new byte[36];
-
+    protected final static ChessPieceMoveSet[] ROOK_MOVES_RIGHT = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] ROOK_MOVES_LEFT = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] ROOK_MOVES_UP = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] ROOK_MOVES_DOWN = new ChessPieceMoveSet[36];
     protected final static ChessPieceMoveSet[] QUEEN_MOVES = new ChessPieceMoveSet[36];
-    protected final static byte[] QUEEN_TOTAL_MOVES = new byte[36];
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_RIGHT = ROOK_MOVES_RIGHT;
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_LEFT = ROOK_MOVES_LEFT;
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_UP = ROOK_MOVES_UP;
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_DOWN = ROOK_MOVES_DOWN;
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_UP_RIGHT = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_DOWN_RIGHT = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_UP_LEFT = new ChessPieceMoveSet[36];
+    protected final static ChessPieceMoveSet[] QUEEN_MOVES_DOWN_LEFT = new ChessPieceMoveSet[36];
 
     static {
         /* White pawn moves */
-        setPawnMoves(WHITE_PAWN_MOVES, WHITE_PAWN_TOTAL_MOVES, -1);
+        setPawnMoves(WHITE_PAWN_MOVES, -1);
 
         /* Black pawn moves */
-        setPawnMoves(BLACK_PAWN_MOVES, BLACK_PAWN_TOTAL_MOVES, +1);
+        setPawnMoves(BLACK_PAWN_MOVES, +1);
 
         /* Knight moves */
-        setKnightMoves(KNIGHT_MOVES, KNIGHT_TOTAL_MOVES);
+        setKnightMoves(KNIGHT_MOVES);
 
         /* King moves */
-        setKingMoves(KING_MOVES, KING_TOTAL_MOVES);
+        setKingMoves(KING_MOVES);
 
         /* Rook moves */
-        setRookMoves(ROOK_MOVES, ROOK_TOTAL_MOVES);
+        setRookMoves();
 
         /* Queen moves */
-        setQueenMoves(QUEEN_MOVES, QUEEN_TOTAL_MOVES);
+        setQueenMoves();
     }
 
-    private static void setPawnMoves(ChessPieceMoveSet[] moveSets, byte[] totalMoves, int direction) {
+    private static void setPawnMoves(ChessPieceMoveSet[] moveSets, int direction) {
         byte yStart = (direction== -1) ? (byte)(Board.ROWS - 1) : (byte)0;
         byte yKill = (direction == -1) ? (byte)-1 : (byte)(Board.ROWS);
 
@@ -63,12 +63,11 @@ public abstract class ChessPieceMoves {
                 }
 
                 moveSets[index] = moves;
-                totalMoves[index] = (byte)moves.size();
             }
         }
     }
 
-    private static void setKnightMoves(ChessPieceMoveSet[] moveSets, byte[] totalMoves) {
+    private static void setKnightMoves(ChessPieceMoveSet[] moveSets) {
         for (byte x = 0; x < Board.COLUMNS; x++) {
             for (byte y = 0; y < Board.ROWS; y++) {
                 byte index = index(x,y);
@@ -84,21 +83,18 @@ public abstract class ChessPieceMoves {
                 possibleMoves.add(index(index, -2, -1));
                 possibleMoves.add(index(index, -1, -2));
 
-                int counter = 0;
                 for (byte move : possibleMoves) {
                     if (move > 0 && move < moveSets.length) {
-                        counter++;
                         moves.add(move);
                     }
                 }
 
                 moveSets[index] = moves;
-                totalMoves[index] = (byte)counter;
             }
         }
     }
 
-    private static void setKingMoves(ChessPieceMoveSet[] moveSets, byte[] totalMoves) {
+    private static void setKingMoves(ChessPieceMoveSet[] moveSets) {
         for (byte x = 0; x < Board.COLUMNS; x++) {
             for (byte y = 0; y < Board.ROWS; y++) {
                 byte index = index(x,y);
@@ -115,32 +111,32 @@ public abstract class ChessPieceMoves {
                 possibleMoves.add(index(index, -1, +0));
                 possibleMoves.add(index(index, -1, -1));
 
-                int counter = 0;
                 for (byte move : possibleMoves) {
                     if (move > 0 && move < moveSets.length) {
-                        counter++;
                         moves.add(move);
                     }
                 }
 
                 moveSets[index] = moves;
-                totalMoves[index] = (byte)counter;
             }
         }
     }
 
-    private static void setRookMoves(ChessPieceMoveSet[] moveSets, byte[] totalMoves) {
+    private static void setRookMoves() {
         for (byte x = 0; x < Board.COLUMNS; x++) {
             for (byte y = 0; y < Board.ROWS; y++) {
                 byte index = index(x,y);
-                byte counter = 0;
-                ChessPieceMoveSet moves = moveSets[index] = new ChessPieceMoveSet();
-                counter += setRookHorizontalMoves(moves, index, x, y, +1);
-                counter += setRookHorizontalMoves(moves, index, x, y, -1);
-                counter += setRookVerticalMoves(moves, index, x, y, +1);
-                counter += setRookVerticalMoves(moves, index, x, y, -1);
+                ChessPieceMoveSet rightMoves = ROOK_MOVES_RIGHT[index] = new ChessPieceMoveSet();
+                setRookHorizontalMoves(rightMoves, index, x, y, +1);
 
-                totalMoves[index] = counter;
+                ChessPieceMoveSet leftMoves = ROOK_MOVES_LEFT[index] = new ChessPieceMoveSet();
+                setRookHorizontalMoves(leftMoves, index, x, y, -1);
+
+                ChessPieceMoveSet upMoves = ROOK_MOVES_UP[index] = new ChessPieceMoveSet();
+                setRookVerticalMoves(upMoves, index, x, y, -1);
+
+                ChessPieceMoveSet downMoves = ROOK_MOVES_DOWN[index] = new ChessPieceMoveSet();
+                setRookVerticalMoves(downMoves, index, x, y, +1);
             }
         }
     }
@@ -171,30 +167,33 @@ public abstract class ChessPieceMoves {
         return counter;
     }
 
-    private static void setQueenMoves(ChessPieceMoveSet[] moveSets, byte[] totalMoves) {
-        setRookMoves(moveSets, totalMoves);
-
+    private static void setQueenMoves() {
         for (byte x = 0; x < Board.COLUMNS; x++) {
             for (byte y = 0; y < Board.COLUMNS; y++) {
                 byte index = index(x,y);
-                ChessPieceMoveSet moves = moveSets[index];
-                byte counter = totalMoves[index];
-                
-                counter += setQueenDiagonalMovement(moves, index, x, y, +1, +1);
-                counter += setQueenDiagonalMovement(moves, index, x, y, +1, -1);
-                counter += setQueenDiagonalMovement(moves, index, x, y, -1, +1);
-                counter += setQueenDiagonalMovement(moves, index, x, y, -1, -1);
-
-                totalMoves[index] = counter;
+                setQueenDiagonalMovement(index, x, y, +1, +1);
+                setQueenDiagonalMovement(index, x, y, +1, -1);
+                setQueenDiagonalMovement(index, x, y, -1, +1);
+                setQueenDiagonalMovement(index, x, y, -1, -1);
             }
         }
     }
 
-    private static byte setQueenDiagonalMovement(ChessPieceMoveSet moves, byte queenIndex, byte queenX, byte queenY, int directionX, int directionY) {
+    private static void setQueenDiagonalMovement(byte queenIndex, byte queenX, byte queenY, int directionX, int directionY) {
         byte moveXKill = (directionX == -1) ? -1 : (byte)(Board.COLUMNS);
         byte moveYKill = (directionY == -1) ? -1 : (byte)(Board.ROWS);
 
-        byte counter = 0;
+        ChessPieceMoveSet moves = null;
+        if (directionX == 1 && directionY == 1) {
+            moves = QUEEN_MOVES_DOWN_RIGHT[queenIndex] = new ChessPieceMoveSet();
+        } else if (directionX == 1 && directionY == -1) {
+            moves = QUEEN_MOVES_UP_RIGHT[queenIndex] = new ChessPieceMoveSet();
+        } else if (directionX == -1 && directionY == 1) {
+            moves = QUEEN_MOVES_DOWN_LEFT[queenIndex] = new ChessPieceMoveSet();
+        } else if (directionX == -1 && directionY == -1) {
+            moves = QUEEN_MOVES_UP_LEFT[queenIndex] = new ChessPieceMoveSet();
+        }
+
         byte moveX = (byte)(queenX + directionX);
         byte moveY = (byte)(queenY + directionY);
 
@@ -202,9 +201,6 @@ public abstract class ChessPieceMoves {
             moves.add(index(moveX, moveY));
             moveX += directionX;
             moveY += directionY;
-            counter++;
         }
-
-        return counter;
     }
 }

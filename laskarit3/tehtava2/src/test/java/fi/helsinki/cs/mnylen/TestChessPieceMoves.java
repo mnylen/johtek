@@ -113,7 +113,6 @@ public class TestChessPieceMoves {
                 }
 
                 assertThat((byte)moves.size(), is(counter));
-                assertThat(ChessPieceMoves.KING_TOTAL_MOVES[index], is(counter));
             }
         }
     }
@@ -121,25 +120,30 @@ public class TestChessPieceMoves {
     @Test
     public void testRookMoves() {
         byte index = index((byte)1, (byte)2);
-        ChessPieceMoveSet moves = ChessPieceMoves.ROOK_MOVES[index];
-
-        assertThat((byte)moves.size(), is((byte)10));
-        assertThat(ChessPieceMoves.ROOK_TOTAL_MOVES[index], is((byte)10));
 
         // can move two up
+        ChessPieceMoveSet moves = ChessPieceMoves.ROOK_MOVES_UP[index];
+
+        assertThat((byte)moves.size(), is((byte)2));
         assertThat(moves.contains(index(index, +0, -1)), is(true));
         assertThat(moves.contains(index(index, +0, -2)), is(true));
 
         // can move four right
+        moves = ChessPieceMoves.ROOK_MOVES_RIGHT[index];
+        assertThat((byte)moves.size(), is((byte)4));
         assertThat(moves.contains(index(index, +1, +0)), is(true));
         assertThat(moves.contains(index(index, +2, +0)), is(true));
         assertThat(moves.contains(index(index, +3, +0)), is(true));
         assertThat(moves.contains(index(index, +4, +0)), is(true));
 
         // can move one left
+        moves = ChessPieceMoves.ROOK_MOVES_LEFT[index];
+        assertThat((byte)moves.size(), is((byte)1));
         assertThat(moves.contains(index(index, -1, +0)), is(true));
 
         // can move three down
+        moves = ChessPieceMoves.ROOK_MOVES_DOWN[index];
+        assertThat((byte)moves.size(), is((byte)3));
         assertThat(moves.contains(index(index, +0, +1)), is(true));
         assertThat(moves.contains(index(index, +0, +2)), is(true));
         assertThat(moves.contains(index(index, +0, +3)), is(true));
@@ -148,43 +152,54 @@ public class TestChessPieceMoves {
     @Test
     public void testQueenMoves() {
         byte index = index((byte)1, (byte)2);
-        ChessPieceMoveSet moves = ChessPieceMoves.QUEEN_MOVES[index];
 
         // can move two up
+        ChessPieceMoveSet moves = ChessPieceMoves.QUEEN_MOVES_UP[index];
+        assertThat((byte)moves.size(), is((byte)2));
         assertThat(moves.contains(index(index, +0, -1)), is(true));
         assertThat(moves.contains(index(index, +0, -2)), is(true));
 
         // can move four right
+        moves = ChessPieceMoves.QUEEN_MOVES_RIGHT[index];
+        assertThat((byte)moves.size(), is((byte)4));
         assertThat(moves.contains(index(index, +1, +0)), is(true));
         assertThat(moves.contains(index(index, +2, +0)), is(true));
         assertThat(moves.contains(index(index, +3, +0)), is(true));
         assertThat(moves.contains(index(index, +4, +0)), is(true));
 
         // can move one left
+        moves = ChessPieceMoves.QUEEN_MOVES_LEFT[index];
+        assertThat((byte)moves.size(), is((byte)1));
         assertThat(moves.contains(index(index, -1, +0)), is(true));
 
         // can move three down
+        moves = ChessPieceMoves.QUEEN_MOVES_DOWN[index];
+        assertThat((byte)moves.size(), is((byte)3));
         assertThat(moves.contains(index(index, +0, +1)), is(true));
         assertThat(moves.contains(index(index, +0, +2)), is(true));
         assertThat(moves.contains(index(index, +0, +3)), is(true));
-
-        // can move towards top left
+        
+        // can move one up left
+        moves = ChessPieceMoves.QUEEN_MOVES_UP_LEFT[index];
+        assertThat((byte)moves.size(), is((byte)1));
         assertThat(moves.contains(index(index, -1, -1)), is(true));
 
-        // can move two toward top right
+        // can move two up right
+        moves = ChessPieceMoves.QUEEN_MOVES_UP_RIGHT[index];
+        assertThat((byte)moves.size(), is((byte)2));
         assertThat(moves.contains(index(index, +1, -1)), is(true));
         assertThat(moves.contains(index(index, +2, -2)), is(true));
 
-        // can move one toward bottom left
+        // can move one down left
+        moves = ChessPieceMoves.QUEEN_MOVES_DOWN_LEFT[index];
+        assertThat((byte)moves.size(), is((byte)1));
         assertThat(moves.contains(index(index, -1, +1)), is(true));
 
-        // can move three toward bottom right
+        // can move three down right
+        moves = ChessPieceMoves.QUEEN_MOVES_DOWN_RIGHT[index];
+        assertThat((byte)moves.size(), is((byte)3));
         assertThat(moves.contains(index(index, +1, +1)), is(true));
         assertThat(moves.contains(index(index, +2, +2)), is(true));
         assertThat(moves.contains(index(index, +3, +3)), is(true));
-        
-        assertThat((byte)moves.size(), is((byte)17));
-        assertThat(ChessPieceMoves.QUEEN_TOTAL_MOVES[index], is((byte)17));
-
     }
 }
