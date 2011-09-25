@@ -1,59 +1,86 @@
-package fi.helsinki.cs.mnylen;
+package ai;
 
+import ai.Board;
+import ai.ChessPieceMoveSet;
+import ai.ChessPieceMoves;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
-import static fi.helsinki.cs.mnylen.Helpers.*;
+import static ai.Helpers.*;
 
 public class TestChessPieceMoves {
 
     @Test
     public void testWhitePawnMoves() {
-        for (byte x = 0; x < Board.COLUMNS; x++) {
-            for (byte y = Board.ROWS - 1; y >= 0; y--) {
-                byte index = index(x,y);
+        // From topmost row can't move anywhere
+        byte index = index(3, 0);
+        ChessPieceMoveSet moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        assertThat(moves.size(), is(0));
 
-                ChessPieceMoveSet moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        // From downmost row can't move anywhere
+        index = index(3, 5);
+        moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        assertThat(moves.size(), is(0));
 
-                if (y == 0 || y == Board.ROWS - 1) {
-                    assertThat(moves.size(), is(0));
-                } else if (x > 0 && x < Board.COLUMNS) {
-                    assertThat(moves.size(), is(3));
-                    assertThat(moves.contains(index(index, +0, -1)), is(true)); // at top of pawn
-                    assertThat(moves.contains(index(index, +1, -1)), is(true)); // at top right of pawn
-                    assertThat(moves.contains(index(index, -1, -1)), is(true)); // at top left of pawn
-                } else {
-                    assertThat(moves.size(), is(1));
-                    assertThat(moves.contains(index(index, +0, -1)), is(true));
-                }
-            }
-        }
+        // From left corner can move to only two directions
+        index = index(0, 4);
+        moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        assertThat(moves.size(), is(2));
+        assertThat(moves.contains(index(index, +1, -1)), is(true));
+        assertThat(moves.contains(index(index, +0, -1)), is(true));
+
+        // From center can move to three direction
+        index = index(3, 4);
+        moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        assertThat(moves.size(), is(3));
+        assertThat(moves.contains(index(index, +1, -1)), is(true));
+        assertThat(moves.contains(index(index, +0, -1)), is(true));
+        assertThat(moves.contains(index(index, -1, -1)), is(true));
+        
+        // From the right corner can move to only two directions
+        index = index(5, 4);
+        moves = ChessPieceMoves.WHITE_PAWN_MOVES[index];
+        assertThat(moves.size(), is(2));
+        assertThat(moves.contains(index(index, -1, -1)), is(true));
+        assertThat(moves.contains(index(index, +0, -1)), is(true));
     }
 
      @Test
     public void testBlackPawnMoves() {
-        for (byte x = 0; x < Board.COLUMNS; x++) {
-            for (byte y = Board.ROWS - 1; y >= 0; y--) {
-                byte index = index(x,y);
+        // From topmost row can't move anywhere
+        byte index = index(3, 0);
+        ChessPieceMoveSet moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        assertThat(moves.size(), is(0));
 
-                ChessPieceMoveSet moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        // From downmost row can't move anywhere
+        index = index(3, 5);
+        moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        assertThat(moves.size(), is(0));
 
-                if (y == 0 || y == Board.ROWS - 1) {
-                    assertThat(moves.size(), is(0));
-                } else if (x > 0 && x < Board.COLUMNS) {
-                    assertThat(moves.size(), is(3));
-                    assertThat(moves.contains(index(index, +0, +1)), is(true));
-                    assertThat(moves.contains(index(index, +1, +1)), is(true));
-                    assertThat(moves.contains(index(index, -1, +1)), is(true));
-                } else {
-                    assertThat(moves.size(), is(1));
-                    assertThat(moves.contains(index(index, +0, +1)), is(true));
-                }
-            }
-        }
+        // From left corner can move to only two directions
+        index = index(0, 4);
+        moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        assertThat(moves.size(), is(2));
+        assertThat(moves.contains(index(index, +1, +1)), is(true));
+        assertThat(moves.contains(index(index, +0, +1)), is(true));
+
+        // From center can move to three direction
+        index = index(3, 4);
+        moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        assertThat(moves.size(), is(3));
+        assertThat(moves.contains(index(index, +1, +1)), is(true));
+        assertThat(moves.contains(index(index, +0, +1)), is(true));
+        assertThat(moves.contains(index(index, -1, +1)), is(true));
+
+        // From the right corner can move to only two directions
+        index = index(5, 4);
+        moves = ChessPieceMoves.BLACK_PAWN_MOVES[index];
+        assertThat(moves.size(), is(2));
+        assertThat(moves.contains(index(index, -1, +1)), is(true));
+        assertThat(moves.contains(index(index, +0, +1)), is(true));
     }
 
     @Test

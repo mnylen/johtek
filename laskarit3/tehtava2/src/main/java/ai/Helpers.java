@@ -1,4 +1,4 @@
-package fi.helsinki.cs.mnylen;
+package ai;
 
 public class Helpers {
     public static byte index(byte x, byte y) {

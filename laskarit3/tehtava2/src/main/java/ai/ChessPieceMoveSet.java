@@ -1,4 +1,4 @@
-package fi.helsinki.cs.mnylen;
+package ai;
 
 import java.util.ArrayList;
 

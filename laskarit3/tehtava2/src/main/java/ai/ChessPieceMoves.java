@@ -1,8 +1,10 @@
-package fi.helsinki.cs.mnylen;
+package ai;
+
+import ai.Board;
 
 import java.util.ArrayList;
 
-import static fi.helsinki.cs.mnylen.Helpers.*;
+import static ai.Helpers.*;
 
 public abstract class ChessPieceMoves {
     protected final static ChessPieceMoveSet[] WHITE_PAWN_MOVES = new ChessPieceMoveSet[36];
@@ -13,7 +15,6 @@ public abstract class ChessPieceMoves {
     protected final static ChessPieceMoveSet[] ROOK_MOVES_LEFT = new ChessPieceMoveSet[36];
     protected final static ChessPieceMoveSet[] ROOK_MOVES_UP = new ChessPieceMoveSet[36];
     protected final static ChessPieceMoveSet[] ROOK_MOVES_DOWN = new ChessPieceMoveSet[36];
-    protected final static ChessPieceMoveSet[] QUEEN_MOVES = new ChessPieceMoveSet[36];
     protected final static ChessPieceMoveSet[] QUEEN_MOVES_RIGHT = ROOK_MOVES_RIGHT;
     protected final static ChessPieceMoveSet[] QUEEN_MOVES_LEFT = ROOK_MOVES_LEFT;
     protected final static ChessPieceMoveSet[] QUEEN_MOVES_UP = ROOK_MOVES_UP;
@@ -44,25 +45,26 @@ public abstract class ChessPieceMoves {
     }
 
     private static void setPawnMoves(ChessPieceMoveSet[] moveSets, int direction) {
-        byte yStart = (direction== -1) ? (byte)(Board.ROWS - 1) : (byte)0;
-        byte yKill = (direction == -1) ? (byte)-1 : (byte)(Board.ROWS);
-
         for (byte x = 0; x < Board.COLUMNS; x++) {
-            for (byte y = yStart; y != yKill; y += direction) {
-                byte index = index(x, y);
+            for (byte y = 0; y < Board.ROWS; y++) {
+                byte index = index(x,y);
+                ChessPieceMoveSet moves = moveSets[index] = new ChessPieceMoveSet();
 
-                ChessPieceMoveSet moves = new ChessPieceMoveSet();
-
-                if (y > 0 && y < (Board.ROWS-1)) {
-                    if (x > 0 && x < Board.COLUMNS) {
-                        moves.add(index(index, +1, direction));
-                        moves.add(index(index, -1, direction));
-                    }
-
-                    moves.add(index(index, +0, direction));
+                if (y == 0 || y == Board.ROWS - 1) {
+                    // Pawn can't move anywhere from the
+                    // first or sixth rank
+                    continue;
                 }
 
-                moveSets[index] = moves;
+                if (x > 0) {
+                    moves.add(index(index, -1, direction));
+                }
+
+                if (x < Board.COLUMNS - 1) {
+                    moves.add(index(index, +1, direction));
+                }
+
+                moves.add(index(index, 0, direction));
             }
         }
     }
