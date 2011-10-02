@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/18/trunk/lib/math
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/18/trunk/lib/math/LICENSE.txt
+END
+commons-math-2.1-javadoc.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/18/trunk/lib/math/commons-math-2.1-javadoc.jar
+END
+commons-math-2.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/18/trunk/lib/math/commons-math-2.1.jar
+END
+commons-math-2.1-sources.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/18/trunk/lib/math/commons-math-2.1-sources.jar
+END
