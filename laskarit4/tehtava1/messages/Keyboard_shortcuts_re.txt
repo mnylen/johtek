@@ -1,0 +1,6 @@
+Hi,
+ Sorry, the arrow key navigation can't be disabled. You can however disable/change most of the other shortcuts, see Preferences>Shortcuts.
+ Funny thing is that arrow key navigation works how it does because a lot of users wanted it to behave this way... most of these are users who do not want to depend on the mouse for navigation.
+ How would you want arrow key navigation to work?
+ Best,
+Silvio

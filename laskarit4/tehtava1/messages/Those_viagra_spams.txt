@@ -1,0 +1,4 @@
+About those viagra spams you are receiving
+
+Those are just spam messages. You can just ignore them. There's nothing we can do about that,
+because our Bayesian spam filter hasn't been yet teached to it's perfection.

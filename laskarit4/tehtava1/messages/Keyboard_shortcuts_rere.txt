@@ -1,0 +1,14 @@
+Hi,
+
+ I'd like it to behave like a web browser does:
+
+ 1. I can scroll through the page with up and down arrow keys.
+ 2. Whenever I'm at the bottom of the page, pressing the down arrow key won't do anything but give me a sound signal there's no more content to scroll by.
+
+ And if I accidentally happen to press the right arrow key, I wouldn't like it to open the feed item in the in-app browser. Of course, my first instinct, when that happens, is to press cmd + left arrow key to go back, just like in the browser, but that won't work: I need to press left arrow key, which also moves the focus from the feed item content to the item list and now when I continue scrolling with my arrow keys, I move between items, not inside the content.
+
+ If I want to go to next or previous item quickly using keyboard, I'd like to be able to assign special hotkeys for those.
+
+ For now, it'd be enough if I could just get an option to completely disable all the arrow key related navigation shortcuts.
+
+ - Mikko

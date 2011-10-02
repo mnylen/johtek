@@ -1,0 +1,9 @@
+After spending a few hours trying to figure out what would be the cleanest way to enable the rvm ruby to use the svn bindings I finally gave up and used Mikko's solution. Well I didn't copy the folders, I just symlinked them.
+
+I noticed there was a swig-related file in /usr/lib/libsvn_swig_ruby-1.so.1.0.0 that apparently is not necessary for the svn bindings to work in rvm.
+
+I noticed that subversion's configure --help mentioned that the ruby bindings should be installed to the ruby installation's sitedir. This would allow you to specify --with-sitedir=SYSTEM_SITEDIR when compiling the ruby version using rvm. However some guy told me in #ubuntu that apt-get should not touch /usr/local and true to this apt-get does not install the libsvn-ruby1.8 package to your sitedir as subversion's INSTALL recommends but instead into your system ruby's libdir.
+
+I'm not sure if it would be all right to just provide the --libdir=SYSTEM_RUBY_LIBDIR when compiling your rvm ruby or if that may cause problems if you are trying to install a slightly different version than the system ruby.
+
+Another option might be if rvm could just check out the part of subversion's repository that deals with making the bindings and then figure out that you have subversion installed (well maybe you would need some sort of libsvndev package I dont know) and create the bindings to point to that and finally place them in your rvm-compiled ruby's sitedir.

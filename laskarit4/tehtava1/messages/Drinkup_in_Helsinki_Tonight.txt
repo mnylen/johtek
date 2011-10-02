@@ -1,0 +1,11 @@
+Drinkup in Helsinki Tonight
+
+Hi,
+
+My name is Scott Chacon, I'm a developer at GitHub. I'm in Helsinki this week for Reaktor Dev Day and noticed your profile
+location was nearby. We're hosting a drinkup tonight at Bar Cuba at 7pm and would like to invite you to come out to the event.
+
+https://github.com/blog/922-drinkup-in-helsinki-tonight
+
+It should be a good turnout and a chance to meet other local developers. Feel free to invite your friends, too.
+Hope you can stop by; we're buying the beer! (don't forget to order the special GitHub beer)

@@ -1,0 +1,12 @@
+Hello,
+
+ I've recently purchased Reeder for Mac and has liked it so far. However, it is irritating how Reeder maps my keyboard arrow keys to different actions:
+
+ - Pressing arrow right opens in-app browser
+ - Pressing left closes the browser
+ - Scrolling through the content using down array works as expected until you are at the end of the item, after which pressing down one more time it opens the previous item in list.
+
+ Having these make using Reeder without mouse pretty much impossible. Is there any way to disable all these keyboard mappings?
+
+ Best regards,
+Mikko Nylén

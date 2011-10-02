@@ -1,0 +1,35 @@
+The password of your user account mnylen@hyad in University of
+ Helsinki AD network will expire on 11.8.2011. After this, you
+ cannot use the AD network, e-mail or internet services.
+
+ Change your password before it expires:
+
+ * Search "accounts" with the search function of the
+  University of Helsinki website
+ * Open the page of the accounts
+ * Choose the quick link Change password: [AD network]
+
+ Your password has to be at least eight characters long, contain
+ at least one capital letter (A-Z), at least one letter in lower
+ case (a-z) and at least one number (0-9). It should not contain
+ more than two letters following each other from your username
+ or your name.
+
+                           * * *
+
+ If your password already has expired, choose the quick link
+ "Resetting of a forgotten password" using your Finnish internet
+ bank identifier as authentication. If this is not possible, visit
+ the account office of the IT Services.
+
+                           * * *
+
+ In problem situations contact
+
+   Helpdesk, IT guidance and user support
+   helpdesk@helsinki.fi
+   tel. 09 191 55555
+
+
+ Best regards,
+ The University of Helsinki, IT Services
