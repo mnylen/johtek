@@ -1,0 +1,67 @@
+2. a)
+
+Kokeillut kuvaparit:
+
+  Trollface & surullinen trollface (img2_1.jpg, img2_2.jpg):
+    - 37 osumaa
+    - ei ehkä toiminut niin hyvin kuin piti
+    - kuvat erikokoisia?
+  
+  Minä & minä, eri tausta, eri ilme: (img3_1.jpg, img3_2.jpg):
+    - 0 osumaa
+    - ei toiminut ollenkaan
+    - tausta ja valaistus erilainen, johtuisiko tästä?
+  
+  Pisan kalteva torni & samanlainen: (img4_1.jpg, img4_2.jpg):
+    - 6 osumaa
+    - toinen kuva oli zoomattu lähemmäs
+    - kaltevuus oli suurin piirtein sama
+  
+  Trollface & minä: (img2_1.jpg, img3_2.jpg):
+    - 1 osuma
+    - kiitti vaan, enemmän kuin minä & minä vertailussa
+  
+  Valkoinen talo & valkoinen talo (whitehouse1.jpg, whitehouse2.jpg)
+    - 107 osumaa
+    - näyttäisi siltä, että zoomaus ei vaikuta
+    - taustallakaan ei näyttäisi olevan hirveästi merkitystä
+  
+2. b)
+
+  Kuvaparina whitehouse.1jpg ja whitehouse2.jpg
+  
+  Kun jälkimmäistä kääntää 90 astetta vasemmalle, osumien määrä vähenee 77 kappaleeseen.
+  
+    - Voi johtua myös uudelleenpakkauksesta?
+    
+  Kun laittaa jälkimmäisen ylösalaisin, osumien määrä vähenee 9 kappaleeseen
+  
+    - Kuvan kääntäminen ei tunnu kannattavalta.
+    
+  Kun jälkimmäisen muuttaa sepianväriseksi, osumien määrä kasvaa
+  
+    - Värien muuttaminen ei vaikuta tunnistukseen?
+  
+  Kontrastin suurentaminen jälkimmäisessä, osumat vain 41
+  
+    - Kontrastin muutokset tuntuvat vaikuttavan aika negatiivisesti
+      kuvien vertailukelpoisuuteen.
+  
+  Jälkimmäisen suurentaminen, osumat kasvavat:
+  
+    - Kun kuvat ovat erikokoiset, näyttäisi tulevan paljon false positiveja
+  
+  Yhteenvetona:
+  
+  - SURF ei tunnu välittävän värien muutoksista
+  - Kun kuvat ovat erikokoisia, virheellisten osumien määrä kasvaa
+  - Kontrastin muutokset tuntuvat vaikuttavan negatiivisesti SURFiin
+  - Kuvan rotate tuntuu vaikuttavan negatiivisesti SURFiin
+  
+  Ainakaan näiden havaintojen perusteella en oikein näe, että SURFia voisi
+  käyttää esimerkiksi valvontakameroiden ottamien kuvien vertaamisessa
+  passikuviin. Kuvat pitävät olla melkeinpä samasta kulmasta otettuja
+  ja samalla kontrastilla. Zoom-taso voi vaihdella.
+  
+  Passikuvan vertaaminen toiseen passikuvaan voisi jopa onnistua.
+  
